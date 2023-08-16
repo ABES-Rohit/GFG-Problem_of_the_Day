@@ -1,0 +1,26 @@
+int maxOnes(int a[], int n)
+    {
+        // Your code goes here
+        int z=0,one=0,max=0;
+        for(int i=0;i<n;i++)
+        {
+            if(a[i]==0)
+            {
+                z++;
+            }
+            else
+            {
+                z--;
+                one++;
+                if(z<0)
+                {
+                    z=0;
+                }
+            }
+            if(z>max)
+            {
+                max=z;
+            }
+        }
+        return (max+one);
+    }
