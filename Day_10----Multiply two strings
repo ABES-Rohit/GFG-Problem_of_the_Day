@@ -1,0 +1,59 @@
+string multiplyStrings(string s1, string s2) {
+       //Your code here
+       bool negative=0;
+       
+       if(s1[0]=='-')
+       {
+           negative^=1;
+           s1=s1.substr(1);
+       }
+       if(s2[0]=='-')
+       {
+           negative^=1;
+           s2=s2.substr(1);
+       }
+       
+       int n=s1.size();
+       int m=s2.size();
+       
+       reverse(s1.begin(),s1.end());
+       reverse(s2.begin(),s2.end());
+       
+       vector<int>ans(n+m,0);
+       for(int i=0;i<m;i++)
+       {
+           int position=i;
+           int x=s2[i] - '0';
+           for(int j=0;j<n;j++)
+           {
+                int y=s1[j] - '0';
+                ans[position]+=x*y;
+                if(ans[position]>9)
+                {
+                    ans[position+1]+=ans[position]/10;
+                    ans[position]=ans[position]%10;
+                }
+                position++;
+           }
+       }
+       bool found=0;
+       string product="";
+       for(int i=ans.size()-1;i>-1;i--)
+       {
+           if(ans[i])
+           {
+               found=1;
+           }
+           if(found)
+           {
+               product+=(char)(ans[i]+'0');
+           }
+           
+       }
+           if(negative)
+           {
+               product='-'+product;
+           }
+       
+       return product;
+    }
