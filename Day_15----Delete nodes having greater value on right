@@ -1,0 +1,38 @@
+class Solution
+{
+    public:
+    Node *reverse(Node *head)
+    {
+        if(head==NULL || head->next==NULL)
+        {
+            return head;
+        }
+        else
+        {
+            Node* rev=reverse(head->next);
+            head->next->next=head;
+            head->next=NULL;
+            return rev;
+        }
+    }
+    Node *compute(Node *head)
+    {
+        // your code goes here
+        head=reverse(head);
+        Node* node=head;
+        while(node->next!=NULL)
+        {
+            if((node->next->data)<(node->data))
+            {
+                node->next=node->next->next;
+            }
+            else
+            {
+                node=node->next;
+            }
+        }
+        head=reverse(head);
+        return head;
+    }
+    
+};
