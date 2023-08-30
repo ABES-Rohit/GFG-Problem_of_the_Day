@@ -1,0 +1,24 @@
+Node* deleteNode(Node *head,int x)
+{
+    //Your code here
+    int a=1;
+    Node* node=head;
+    while(node->next!=NULL)
+    {
+        a++;
+        if(x==1)
+        {
+            head=node->next;
+            return head;
+        }
+        if(a==x)
+        {
+            node->next=node->next->next;
+        }
+        else
+        {
+            node=node->next;
+        }
+    }
+    return head;
+}
