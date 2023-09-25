@@ -1,0 +1,46 @@
+ vector<int> maxCombinations(int N, int K, vector<int> &A, vector<int> &B) {
+        // code here
+        priority_queue<int,vector<int>,greater<int>> pq;
+        vector<int> a;
+        int sum=0;
+        sort(A.begin(),A.end(),greater<int>());
+        sort(B.begin(),B.end(),greater<int>());
+        for(int i=0;i<N;i++)
+        {
+            for(int j=0;j<N;j++)
+            {
+                sum=A[i]+B[j];
+                if(pq.size()<K)
+                {
+                    pq.push(sum);
+                }
+                else
+                {
+                    if(sum>pq.top())
+                    {
+                        pq.pop();
+                        pq.push(sum);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+        while(!pq.empty())
+        {
+            if(pq.size()>K)
+            {
+                pq.pop();
+            }
+            else
+            {
+                a.push_back(pq.top());
+                pq.pop();
+            }
+        }
+        sort(a.begin(),a.end(),greater<int>());
+        return a;
+        
+    }
