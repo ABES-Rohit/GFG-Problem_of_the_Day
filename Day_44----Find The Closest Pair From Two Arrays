@@ -1,0 +1,20 @@
+vector<int> printClosest(int arr[], int brr[], int n, int m, int x) {
+        //code here
+        vector<int> ans(2,-1);
+        int i=0,j=m-1;
+        int sum=0,dif=INT_MAX;
+        while(i<n && j>=0)
+        {
+            sum=arr[i]+brr[j];
+            int d=abs(sum-x);
+            if(d<dif)
+            {
+                dif=d;
+                ans[0]=arr[i];
+                ans[1]=brr[j];
+            }
+            if(sum<x) i++;
+            else  j--;
+        }
+        return ans;
+    }
