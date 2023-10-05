@@ -1,0 +1,32 @@
+long long first(string s,int t)
+  {
+      long long l=0,r=0,cnt=0,ans=0;
+      vector<int> m(26,0);
+      
+      while(r<s.length())
+      {
+          m[s[r]-'a']++;
+          if(m[s[r]-'a']==1) 
+          {
+              cnt++;
+          }
+          while(cnt>t)
+          {
+              m[s[l]-'a']--;
+              if(m[s[l]-'a']<=0)
+              {
+                  cnt--;
+              }
+              l++;
+          }
+          ans+=r-l+1;
+          r++;
+          
+      }
+      return ans;
+  }
+    long long int substrCount (string s, int k) {
+    	//code here.
+    	
+    	return first(s,k)-first(s,k-1);
+    }
