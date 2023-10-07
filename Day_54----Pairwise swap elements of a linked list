@@ -1,0 +1,17 @@
+    Node* pairWiseSwap(struct Node* head) 
+    {
+        // The task is to complete this method
+        if(head==NULL || head->next==NULL)
+        {
+            return head;
+        }
+        else
+        {
+            Node *temp=head->next;
+            head->next=pairWiseSwap(temp->next);
+            temp->next=head;
+            
+            return temp;
+            
+        }
+    }
